@@ -1,0 +1,93 @@
+<template>
+    <div class="">
+        <div class="bg-slate-300">
+
+            <div class="container mx-auto lg:px-4 py-20 h-[32rem]">
+                <p v-if="error">helloe</p>
+    <p class="text-red-500 text-4xl" >{{ error }}</p>
+    <div class="flex flex-col space-y-4 my-2 md:my-0 lg:flex-row mx-4">
+        <div class="panel w-full sm:w-[70%] lg:w-[35%] xl:w-[30%] mx-auto ">
+            <form @submit.prevent="register" id="registration-form"
+                class="border-4 bg-white border-[#6ec1e4] shadow-md rounded-lg px-4 pt-2 pb-6 flex flex-col md:ml-auto w-full space-y-2  ">
+                <input type="hidden" name="_token" value="0NjpnvRbsYPNL3V8gwY40P2HMQMMoqG1noH9eqQ6">
+                <div class="bg-primary-one-dark py-2 px-5 rounded-t-lg text-white">
+                    <p class="text-3xl text-center  font-semibold">
+                       Register
+                    </p>
+                </div>
+
+
+
+                <div class="mb-2">
+                    <input id="name" type="name"
+                        class="form-input {{ $errors->has('name') ? ' is-invalid' : '' }}" required
+                        autocomplete="name" autofocus placeholder="Name" name="name"
+                        v-model="form.name">
+
+                </div>
+
+                <div class="mb-2">
+                    <input id="email" type="email"
+                        class="form-input {{ $errors->has('email') ? ' is-invalid' : '' }}" required
+                        autocomplete="email" placeholder="Email" name="email"
+                        v-model="form.email">
+
+                </div>
+
+                <div class="mb-2">
+                    <input type="text" id="phone" class="form-input @error('phone') error-field @enderror" placeholder="Phone" v-model="form.phone"/>
+                    <p id="valid-msg" class="hidden font-bold text-primary-one">
+                        <i class="fa fa-check-circle text-primary-one text-xl pt-2" aria-hidden="true"></i> Valid Number
+                    </p>
+                    <p id="error-msg" class="hidden text-red-500 font-bold"></p>
+
+                    <input type="hidden" name="phone" id="phone2" />
+                </div>
+
+                <button type="submit" id="submit" class="btn1 btn-primary btn-block btn-flat">
+                   Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</template>
+<script>
+import { reactive, ref } from 'vue'
+export default {
+    setup(){
+        let form = reactive({
+            email: '',
+            password: '',
+            phone: '',
+        });
+
+let errors= ref();
+let error= ref('');
+        const register =async()=> {
+            await axios.post('/api/register',form).then(res=>{
+
+            }) .catch(error => {
+        if (error.response.status === 422) {
+console.log(error.response);
+            errors = error.response.data.errors;
+            error = errors.email[0];
+            console.log(error);
+        }
+    });
+        }
+        console.log(
+
+        );
+        return {
+            form,
+            register,
+            error
+
+        }
+
+    }
+}
+</script>

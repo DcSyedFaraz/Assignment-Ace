@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', function () {
+    return view('layouts.web');
+})->where('any','.*');
+
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
+// Route::get('/contact', function () {
+//     return view('contact');
+// })->name('contact.store');
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

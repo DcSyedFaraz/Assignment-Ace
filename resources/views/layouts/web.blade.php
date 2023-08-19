@@ -84,8 +84,8 @@
             direction: rtl;
         }
     </style>
-
-
+ <script src="{{ mix('resources/js/app.js') }}"></script>
+@vite(['resources/js/app.js', 'resources/css/app.css'])
     {{-- Alpine JS --}}
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
 
@@ -113,15 +113,20 @@
 
 <body class="bg-slate-100">
 
-    @include('partials.frontend.navbar')
+    {{-- @include('partials.frontend.navbar') --}}
+<nav-component></nav-component>
+    <div id="app">
+
+    </div>
 
 
-    @yield('content')
+
+
 
 
 
     {{-- Footer --}}
-    @include('partials.frontend.footer')
+    {{-- @include('partials.frontend.footer') --}}
 
     {{-- Tawto --}}
     {{-- {{ \TawkTo::widgetCode() }} --}}
@@ -141,9 +146,82 @@
     {{-- AOS JS CDN --}}
     {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init();</script> --}}
+    <!--swiper script for client reviews  -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script> --}}
+    <script>
+        // Get the element with id="defaultOpen" and click on it
+        // document.getElementById("defaultOpen").click();
+
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active border-primary-one-dark ", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active border-primary-one-dark ";
+        }
+
+        var tabs = document.getElementsByClassName('steps');
+        // console.log(tabs);
+        for (i = 0; i < tabs.length; i++) {
+            tabs[i].addEventListener('click', function() {
+
+                // console.log(this.getAttribute('data-source'));
+
+                var num = parseInt(this.getAttribute('data-source'));
+
+                var stepNo = document.getElementById('stepNo');
+                var data = document.getElementById('stepData');
+
+                console.log(stepNo, data, num);
+
+                switch (num) {
+                    case 1:
+                        stepNo.innerHTML = "1";
+                        data.innerHTML = "Fill out the form";
+                        break;
+                    case 2:
+                        stepNo.innerHTML = "2";
+                        data.innerHTML = "Make payment";
+                        break;
+                    case 3:
+                        stepNo.innerHTML = "3";
+                        data.innerHTML = "Keep in the loop with the essay help expert";
+                        break;
+                    case 4:
+                        stepNo.innerHTML = "4";
+                        data.innerHTML = "Your essay is in progress";
+                        break;
+                    case 5:
+                        stepNo.innerHTML = "5";
+                        data.innerHTML = "Receive your essay by email";
+                        break;
+                    case 6:
+                        stepNo.innerHTML = "6";
+                        data.innerHTML = "Submit the essay, and enjoy!";
+                        break;
 
 
-    {{-- <script src="jquery.countup.js"></script> --}}
+
+                }
+
+
+            })
+        }
+    </script>
+
 
     @yield('scripts')
 

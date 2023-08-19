@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Query extends Model
+{
+    protected $fillable=[
+        'fname',
+        'email',
+        'subject',
+        'deadline',
+        'wcount',
+        'phone',
+        'university',
+    ];
+    public function deadlineName()
+    {
+        return $this->belongsTo(Deadline::class,'deadline', 'id');
+    }
+}

@@ -6,7 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import Example from './components'
+import app from './Layouts/app.vue';
+import router from './router';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -14,21 +15,8 @@ import Example from './components'
  * to use in your application's views. An example is included for you.
  */
 
-// const app = createApp({});
+createApp(app).use(router).mount('#app');
 
-// import ExampleComponent from './components/ExampleComponent.vue';
-// app.component('example-component', ExampleComponent);
-// Vue.component('Example', Example);
-// const app = new Vue({
-//     el: '#app', // Replace with your element ID
-//   });
-
-
-window.Vue = require('vue');
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-const app = new Vue({
-  el: '#app',
-});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -47,4 +35,4 @@ const app = new Vue({
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.mount('#app');
+
