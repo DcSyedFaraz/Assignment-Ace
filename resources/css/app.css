@@ -4,6 +4,7 @@
  .nav {
     @apply text-black space-x-1 md:pt-0 md:pl-0 py-2 pl-3 pr-4 hover:text-[#3CAEA3]  font-medium rounded-lg text-sm  text-center mr-3 md:mr-0;
  }
- .btn1{
-    @apply bg-primary-two text-white font-medium border-2 border-primary-two px-5 py-2 md:text-sm rounded-lg shadow-lg hover:bg-white hover:font-bold hover:text-primary-one-dark transition duration-700 ;
+ 
+.btn-pay, .btn1{
+    @apply bg-primary-one-dark uppercase w-full text-white font-medium border-2 border-primary-one-dark px-5 py-2 md:text-base rounded-lg shadow-lg hover:bg-white  hover:text-primary-one-dark transition duration-700;
 }

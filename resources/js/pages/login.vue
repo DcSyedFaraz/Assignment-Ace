@@ -6,7 +6,10 @@
     <div class="flex flex-col space-y-4 my-2 md:my-0 lg:flex-row mx-4">
 
         <div class="panel w-full md:w-[60%] xl:w-[30%] mx-auto ">
-            {{ form }}
+            <!-- <div class="" v-if="msg">
+
+                {{ msg }}
+            </div> -->
             <form @submit.prevent="login" class=" bg-white border-4 rounded-3xl border-primary-two shadow-2xl px-4 pt-2 pb-6 flex flex-col md:ml-auto w-full space-y-2  ">
                 <div class="bg-primary-one-dark py-2 px-5 rounded-t-lg">
                         <p class="text-3xl text-center text-white font-semibold">
@@ -88,8 +91,9 @@ export default {
 
         return {
             form,
-            login
+            login,
+
         }
     }
-}
+};
 </script>

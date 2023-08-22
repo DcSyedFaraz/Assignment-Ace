@@ -219,7 +219,7 @@
     </section>
 
 
-    <div class="fixed bottom-4 left-4 z-20 cursor-pointer ">
+    <!-- <div class="fixed bottom-4 left-4 z-20 cursor-pointer ">
         <div class="h-12 w-12 bg-green-500 shadow-xl rounded-full">
             <a href="https://api.whatsapp.com/send/?phone={{ $web_setting->whatsapp_no }}" target="_blank"
                 class="absolute bottom-[4px] left-[4px]  rounded-full cursor-pointer">
@@ -246,7 +246,7 @@
                 </svg>
             </a>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>

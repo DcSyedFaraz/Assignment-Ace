@@ -11,14 +11,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 // use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
-
-use function Laravel\Prompts\error;
-
 // use Symfony\Component\HttpFoundation\Request ;
 
 class RegisterController extends Controller
@@ -84,8 +80,6 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => Hash::make($password),
         ]);
-        // $success['token'] = $user->createToken('MyAppToken')->plainTextToken;
-        $succcess['name'] = $user->name;
 // dd($user);
         //customer
         $user->roles()->sync(2);
@@ -98,15 +92,13 @@ class RegisterController extends Controller
     {
         // dd($request);
         $this->validator($request->all())->validate();
+    //    dd($resi);
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return response()->json(['message' => 'Registration successful'], 200);
 
 
-
-
-            event(new Registered($user = $this->create($request->all())));
-            // dd("user-registered");
-
-            return response()->json(http_response_code(200));
-        
-
+        // return redirect()->route('login')->withSuccess('Auto-Generated password has been sent to your email.');
     }
 }

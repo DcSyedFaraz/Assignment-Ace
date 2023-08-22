@@ -118,8 +118,15 @@
     <div id="app">
 
     </div>
-
-
+<div class="text-4xl">
+    @if (auth()->check()) {
+         User is logged in
+    } @else {
+        User is not logged in
+    }
+    @endif
+    {{Auth::user()->name ?? 'Hello'}}
+</div>
 
 
 
